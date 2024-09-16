@@ -38,16 +38,17 @@ const TodoForm = ({ todoToEdit, onCancel, topRef }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <TextField
+      <TextField style={{height:"15px"}}
         inputRef={topRef}
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
         required
         placeholder="Todo"
+      
       />
-      <Button type="submit" variant="contained" color="primary">
+      <Button type="submit" variant="contained" color="primary" style={{marginRight:"-385px",position:"relative",top:"-20px"}}>
         {todoToEdit ? "Update Todo" : "Add Todo"}
-      </Button>
+      </Button >
       {todoToEdit && <Button onClick={onCancel}>Cancel</Button>}
     </form>
   );

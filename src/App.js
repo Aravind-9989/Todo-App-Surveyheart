@@ -27,7 +27,7 @@ const App = () => {
         textAlign={"center"}
         color="#1d1d1d"
       >
-        <h6>Todo App Project</h6>
+        <h6>Todo App</h6>
 
       </Typography>
       <TodoForm
