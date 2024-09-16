@@ -1,0 +1,12 @@
+body {
+  background: linear-gradient(white black);
+  background-color: antiquewhite;
+
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
