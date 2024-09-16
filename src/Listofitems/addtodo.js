@@ -1,55 +1,60 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo, updateTodo } from "../reduxcomponents/action";
+import { addpart, updatelist } from "../reduxcomponents/action";
 import { Button, TextField } from "@mui/material";
 
-const TodoForm = ({ todoToEdit, onCancel, topRef }) => {
-  const [todo, setTodo] = useState(todoToEdit ? todoToEdit.todo : "");
+const TodoForm = ({ currentTodo, onCancelEdit, inputRef }) => {
+  const [todoText, setTodoText] = useState(currentTodo ? currentTodo.todo : "");
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (todoToEdit) {
-      setTodo(todoToEdit.todo);
+    if (currentTodo) {
+      setTodoText(currentTodo.todo);
     } else {
-      setTodo("");
+      setTodoText("");
     }
-  }, [todoToEdit]);
+  }, [currentTodo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (todoToEdit) {
+    if (currentTodo) {
       dispatch(
-        updateTodo({
-          id: todoToEdit.id,
-          todo,
+        updatelist({
+          id: currentTodo.id,
+          todo: todoText,
         })
       );
     } else {
       dispatch(
-        addTodo({
+        addpart({
           id: Date.now(),
-          todo,
+          todo: todoText,
         })
       );
     }
-    setTodo("");
-    onCancel();
+    setTodoText("");
+    onCancelEdit();
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <TextField style={{height:"15px"}}
-        inputRef={topRef}
-        value={todo}
-        onChange={(e) => setTodo(e.target.value)}
+      <TextField
+        style={{ height: "15px" }}
+        inputRef={inputRef}
+        value={todoText}
+        onChange={(e) => setTodoText(e.target.value)}
         required
         placeholder="Todo"
-      
       />
-      <Button type="submit" variant="contained" color="primary" style={{marginRight:"-385px",position:"relative",top:"-20px"}}>
-        {todoToEdit ? "Update Todo" : "Add Todo"}
-      </Button >
-      {todoToEdit && <Button onClick={onCancel}>Cancel</Button>}
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        style={{ marginRight: "-385px", position: "relative", top: "-20px" }}
+      >
+        {currentTodo ? "Update Todo" : "Add Todo"}
+      </Button>
+      {currentTodo && <Button onClick={onCancelEdit}>Cancel</Button>}
     </form>
   );
 };

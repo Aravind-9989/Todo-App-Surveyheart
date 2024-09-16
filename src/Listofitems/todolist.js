@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo, fetchTodos, updateTodo } from "../reduxcomponents/action";
+import { deletelist, Fetchingdata, updatelist } from "../reduxcomponents/action";
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -26,14 +26,14 @@ const TodoList = ({ onEdit, topRef, onCancel }) => {
 
   useEffect(() => {
     const loadTodos = async () => {
-      await dispatch(fetchTodos());
+      await dispatch(Fetchingdata());
       setLoading(false); 
     };
     loadTodos();
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    dispatch(deleteTodo(id));
+    dispatch(deletelist(id));
     toast.success("Successfully deleted todo");
     onCancel();
   };
@@ -48,7 +48,7 @@ const TodoList = ({ onEdit, topRef, onCancel }) => {
   };
 
   const handleCheckboxChange = (id, completed, todo) => {
-    dispatch(updateTodo({ id, completed: !completed, todo }));
+    dispatch(updatelist({ id, completed: !completed, todo }));
     toast.success("Successfully updated todo");
     onCancel();
   };

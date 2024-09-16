@@ -6,17 +6,17 @@ import { Container, Typography } from "@mui/material";
 import "./App.css";
 
 const App = () => {
-  const [editingTodo, setEditingTodo] = useState(null);
+  const [changingTodo, setchangingTodo] = useState(null);
   const topRef = useRef(null);
 
-  const handleEditTodo = (todo) => {
-    setEditingTodo(todo);
+  const handleEditingTodo = (todo) => {
+    setchangingTodo(todo);
     topRef.current.scrollIntoView({ behavior: "smooth" });
     topRef.current.focus();
   };
 
-  const handleCancelEdit = () => {
-    setEditingTodo(null);
+  const handledropEdit = () => {
+    setchangingTodo(null);
   };
 
   return (
@@ -32,13 +32,13 @@ const App = () => {
       </Typography>
       <TodoForm
         topRef={topRef}
-        todoToEdit={editingTodo}
-        onCancel={handleCancelEdit}
+        todoToEdit={changingTodo}
+        onCancel={handledropEdit}
       />
       <TodoList
         topRef={topRef}
-        onEdit={handleEditTodo}
-        onCancel={handleCancelEdit}
+        onEdit={handleEditingTodo}
+        onCancel={handledropEdit}
       />
     </Container>
   );

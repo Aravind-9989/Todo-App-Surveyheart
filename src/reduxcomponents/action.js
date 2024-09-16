@@ -1,18 +1,18 @@
 import axios from "axios";
 
-const URL = "https://dummyjson.com/todos";
+const ApiURL = "https://dummyjson.com/todos";
 
-export const fetchTodos = () => async (dispatch) => {
+export const Fetchingdata = () => async (dispatch) => {
   try {
-    const result = await axios.get(URL);
-    dispatch({ type: "FETCH_TODOS_SUCCESS", payload: result.data.todos });
+    const result = await axios.get(ApiURL);
+    dispatch({ type: "FETCH_DATA_SUECESSFULLY", payload: result.data.todos });
   } catch (error) {
-    dispatch({ type: "FETCH_TODOS_ERROR", payload: error.message });
+    dispatch({ type: "FETCH_DATA_ERRORS", payload: error.message });
   }
 };
 
-export const addTodo = (todo) => ({ type: "ADD_TODO", payload: todo });
+export const addpart = (todo) => ({ type: "ADD_TODO_LIST", payload: todo });
 
-export const deleteTodo = (id) => ({ type: "DELETE_TODO", payload: id });
+export const deletelist = (id) => ({ type: "DELETE_TODO_LIST", payload: id });
 
-export const updateTodo = (todo) => ({ type: "UPDATE_TODO", payload: todo });
+export const updatelist = (todo) => ({ type: "UPDATE_TODO_LIST", payload: todo });
