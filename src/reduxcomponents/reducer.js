@@ -10,7 +10,7 @@ const todoReducer = (state = initialState, action) => {
     case "FETCH_TODOS_ERROR":
       return { ...state, error: action.payload };
     case "ADD_TODO":
-      return { ...state, todos: [...state.todos, action.payload] };
+      return { ...state, todos: [ action.payload,...state.todos] };
     case "DELETE_TODO":
       return {
         ...state,
